@@ -1,0 +1,32 @@
+@use './variables' as *;
+
+@mixin button {
+    cursor: pointer;
+    //opacity: .9;
+    transition: .2s;
+    
+    &:hover {
+        opacity: 1;
+    }
+
+    &:disabled {
+        cursor: default;
+        opacity: .7;
+    }
+}
+
+@mixin button-transparent {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+@mixin box-shadow($color) {
+    box-shadow: 1px 1px 2px rgba($color, 0.5), -1px 1px 2px rgba($color, 0.5), -1px -1px 3px rgba($color, 0.5);
+}
+
+@mixin arrow-down {
+    content: "⮟";
+}

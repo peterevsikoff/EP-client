@@ -1,0 +1,26 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+body {
+    margin: 0;
+    font-family: Verdana;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+button, a, input, textarea, select {
+    font-family: Verdana;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}

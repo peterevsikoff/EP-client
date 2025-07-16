@@ -1,0 +1,7 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.user {
+    text-align: center;
+    color: $green;
+}
