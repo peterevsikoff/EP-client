@@ -36,7 +36,7 @@ const SignUp = () => {
         <section className="sign">
             {/* <HelmetHead title={language.sign_up} description="" noRobots/> */}
             <form onKeyDown={e => { if (e.key === "Enter") handleSignUp(e)}}>
-                <h2>{language.sign_up}</h2>
+                {/* <h2>{language.sign_up}</h2> */}
                 <div className="row-input">
                     <Input name={language.email} parameter="email" type={INPUTTYPE.EMAIL} value={user} setValue={setUser} requared autoFocus/>
                 </div>

@@ -7,7 +7,7 @@ const addressRequest = {
     getUser: `${host}getUser`,
     getAllUsers: `${host}users/getAllUsers`,
 
-    signUp: `${host}signUp`,
+    signUp: `${host}users/signUp`,
 }
 
 export {
