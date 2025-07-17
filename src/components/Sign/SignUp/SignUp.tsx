@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { selectCommonData } from "selectors";
 import { INPUTTYPE, type IError, type IUserToServer, type MainTypeForChange } from "types";
 import { validEmail } from "utils";
+import "../sign.scss";
 
 const SignUp = () => {
     const { language } = useSelector(selectCommonData);
