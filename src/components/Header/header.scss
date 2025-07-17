@@ -1,0 +1,140 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.header {
+    color: $white;
+    font-size: 18px;
+    position: sticky;
+    top: 0;
+    margin-bottom: 12px;
+    z-index: 1000;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        height: 12px;
+        width: 100%;
+        background-color: $dark-gray;
+    }
+
+    .section-tile {
+        border-radius: 0 0 16px 16px;
+    }
+
+    .header-wrap, .header-right-side {
+        @include dfbc;
+    }
+
+    .header-right-side {
+        @media (max-width: 912px) {
+            display: none;
+        }
+    }
+
+    .nav-active {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: $black;
+        padding: 0 32px;
+        animation: navShowAnimation .7s forwards;
+
+        @keyframes navShowAnimation {
+            0% {
+                transform: translate(-100%, 0);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+    
+        .navigation {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+
+            a {
+                margin-bottom: 12px;
+            }
+        }
+    }
+
+    .navigation {
+        margin: 0 32px; 
+    }
+
+    a {
+        margin-right: 32px;
+        color: $white;
+        &:not(.a-active) {
+            @include a;
+        }
+        
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .a-active {
+        color: $orange;
+
+        &:hover {
+            text-shadow: -1px 1px 15px $white;
+        }
+    }
+
+    .btn-burger {
+        @include button-transparent;
+        @include button;
+
+        @media (min-width: 913px) {
+            display: none;
+        }
+
+        svg {
+            path {
+                fill: $white;
+            }
+        }
+    }
+
+    .btn-burger-active path {
+        transition: transform .2s;
+
+        &:nth-of-type(1){
+            transform: rotate(45deg);
+            transform-origin: -1px 3px;
+        }
+
+        &:nth-of-type(2){
+            display: none;
+        }
+
+        &:nth-of-type(3){
+            transform: rotate(-45deg);
+            transform-origin: 0px 13px;
+        }
+    }
+}
+
+.header-active {
+    &::after {
+        content: none;
+    }
+
+    .container {
+        padding: 0;
+    }
+
+    .header-wrap {
+        padding: 0 15px;
+    }
+}

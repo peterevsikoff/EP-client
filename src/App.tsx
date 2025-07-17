@@ -1,6 +1,6 @@
-import { Home, User } from "components";
+import { Header, Home, SignUp } from "components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { BODY } from "types";
+import { PAGES } from "types";
 
 const App = () => {
   
@@ -8,13 +8,12 @@ const App = () => {
   return (
     <BrowserRouter>
         {/* <User/> */}
-        {/* <Header/> */}
+        <Header/>
         <Routes>
             <Route path="/">
                 <Route index element={<Home/>}></Route>
-                <Route path={BODY.SIGN_UP}>
-                    <Route index element={<User/>}></Route>
-                    {/* <Route path=":id" element={canProtected(roles, BODY.PROJECTS) ? <SelectedProject/> : <PageNotFound notAccess/>}></Route> */}
+                <Route path={PAGES.SIGN_UP}>
+                    <Route index element={<SignUp/>}></Route>
                 </Route>
                 <Route path="*" element={<div>404</div>}></Route>
             </Route>

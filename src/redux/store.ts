@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { all } from "redux-saga/effects";
-import { userReducer } from "./reducers";
+import { commonReducer, userReducer } from "./reducers";
 import { watcherUser } from "./action-creators";
 
 const middleWare = createSagaMiddleware();
@@ -14,6 +14,7 @@ function* rootSaga() {
 
 const store = createStore(combineReducers({
     user: userReducer,
+    common: commonReducer,
 }), {}, applyMiddleware(middleWare));
 
 middleWare.run(rootSaga);

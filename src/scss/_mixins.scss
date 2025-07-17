@@ -1,17 +1,46 @@
 @use './variables' as *;
 
+@mixin h1 {
+  //font-family: "Bebas Neue";
+  font-weight: 600;
+  font-size: 48px;
+  color: $white;
+}
+
+@mixin h2 {
+    font-weight: 600;
+    font-size: 36px;
+    color: $white;
+  }
+
+@mixin dfbc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin a {
+    cursor: pointer;
+    transition: .2s;
+
+    &:hover {
+        color: $white-bright;
+        text-shadow: -1px 1px 15px $white-bright;
+    }
+}
+
+@mixin box-shadow($color) {
+    box-shadow: 1px 1px 2px rgba($color, 0.5), -1px 1px 2px rgba($color, 0.5), -1px -1px 3px rgba($color, 0.5);
+}
+
 @mixin button {
     cursor: pointer;
-    //opacity: .9;
-    transition: .2s;
-    
+    line-height: 1;
+    white-space: nowrap;
+    opacity: .7;
+
     &:hover {
         opacity: 1;
-    }
-
-    &:disabled {
-        cursor: default;
-        opacity: .7;
     }
 }
 
@@ -19,14 +48,19 @@
     border: none;
     outline: none;
     background-color: inherit;
-    line-height: 1;
-    white-space: nowrap;
 }
 
-@mixin box-shadow($color) {
-    box-shadow: 1px 1px 2px rgba($color, 0.5), -1px 1px 2px rgba($color, 0.5), -1px -1px 3px rgba($color, 0.5);
+@mixin a {
+    color: $white;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: .2s;
+
+    &:hover {
+        color: $green;
+    }
 }
 
-@mixin arrow-down {
-    content: "⮟";
-}
+// @mixin adaptiv-font($pcSize, $mobSize) {
+// 	min-width: calc(#{$mobSize + px} + ($pcSize - $mobSize) * ((100vw - 320px) / ($maxWidth - 320)));
+// }

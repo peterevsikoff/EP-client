@@ -6,6 +6,8 @@ const addressRequest = {
     //user
     getUser: `${host}getUser`,
     getAllUsers: `${host}users/getAllUsers`,
+
+    signUp: `${host}signUp`,
 }
 
 export {
