@@ -1,4 +1,4 @@
-import { Burger } from "components";
+import { Burger, User } from "components";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -24,7 +24,7 @@ const Header = () => {
                                 <NavLink to={`/${PAGES.ABOUT}`} className={({ isActive }) => `${isActive ? "a-active" : ""}`}>{language.about}</NavLink>
                                 <NavLink to={`/${PAGES.ADMIN}`} className={({ isActive }) => `${isActive ? "a-active" : ""}`}>{language.admin}</NavLink>
                             </nav>
-                            {/* <User/> */}
+                            <User/>
                         </div>
                         <button className={`btn-burger${show ? " btn-burger-active" : ""}`} onClick={() => setShow(!show)}>
                             <Burger/>
