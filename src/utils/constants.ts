@@ -1,6 +1,6 @@
 // const port = "3001";
 // const host = `http://${window.location.hostname}:${port}/`;
-const host = "https://serverep.vercel.app/";
+const host = "https://ep-server.vercel.app/";
 
 const addressRequest = {
     //user
