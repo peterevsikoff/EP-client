@@ -8,6 +8,8 @@ const writeCookie = (param: string, value: string) => {
     document.cookie = `${encodeURIComponent(param)}=${encodeURIComponent(value)}; expires=${date}; path=/`;
 }
 
+
+
 export {
     validEmail,
     writeCookie,

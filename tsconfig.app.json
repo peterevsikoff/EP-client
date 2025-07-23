@@ -30,6 +30,7 @@
       "action-types": ["redux/action-types"],
       "selectors": ["redux/selectors"],
       "utils": ["utils"],
+      "hooks": ["hooks"],
     }
   },
   "include": ["src"]

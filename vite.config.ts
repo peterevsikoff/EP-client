@@ -16,6 +16,7 @@ export default defineConfig({
         { find: 'action-types', replacement: path.resolve(__dirname, 'src/redux/action-types') },
         { find: 'selectors', replacement: path.resolve(__dirname, 'src/redux/selectors') },
         { find: 'utils', replacement: path.resolve(__dirname, 'src/utils') },
+        { find: 'hooks', replacement: path.resolve(__dirname, 'src/hooks') },
     ]
 }
 })
