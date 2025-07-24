@@ -12,6 +12,11 @@ const languageRu: { [key: string]: string } = {
     sign_up: "Регистрация",
     tests: "Методики",
     hello: "Привет",
+    very_weak: "очень слабый",
+    weak: "слабый",
+    average: "средний",
+    good: "хороший",
+    great: "отличный",
 }
 
 export { languageRu };

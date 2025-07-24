@@ -31,6 +31,7 @@
       "selectors": ["redux/selectors"],
       "utils": ["utils"],
       "hooks": ["hooks"],
+      "scss": ["scss"],
     }
   },
   "include": ["src"]

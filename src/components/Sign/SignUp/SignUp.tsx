@@ -1,14 +1,12 @@
 import { signUp } from "action-creators";
-import { Input } from "components";
-import { useCallback, useEffect, useState, useTransition } from "react";
+import { Input, PasswordCheck } from "components";
+import { useState, useTransition } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectCommonData } from "selectors";
 import { INPUTTYPE, type IError, type IUserToServer, type MainTypeForChange } from "types";
 import { validEmail } from "utils";
 import "../sign.scss";
-import { useDebouncedFunction } from "hooks";
-import zxcvbn from 'zxcvbn';
 
 const SignUp = () => {
     const { language } = useSelector(selectCommonData);
@@ -16,7 +14,7 @@ const SignUp = () => {
     const [user, setUser] = useState<MainTypeForChange>();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<IError | undefined>();
-    const [score, setScore] = useState(0);
+    
     const [, startTransition] = useTransition();
 
     const dispatch = useDispatch();
@@ -35,23 +33,6 @@ const SignUp = () => {
         dispatch(signUp(user as IUserToServer, callBackSuccess, callBackError, callBackServerError));
     }
 
-    const checkPassword = useCallback((password: string) => {
-        const result = zxcvbn(password);
-        setScore(result.score);
-    }, []);
-
-    const { debouncedFn, cancel } = useDebouncedFunction(checkPassword, 1000);
-
-    useEffect(() => {
-        return () => cancel();
-    }, [cancel]);
-
-    useEffect(() => {
-        // if(user?.password){
-            debouncedFn((user?.password ?? "") as string);
-        // }
-    }, [debouncedFn, user?.password]);
-    
     return(
         <section className="sign">
             {/* <HelmetHead title={language.sign_up} description="" noRobots/> */}
@@ -66,9 +47,7 @@ const SignUp = () => {
                 </div>
                 {
                     user?.password &&
-                    <div className="password-score">
-                        {`Сложность пароля: ${score}`}
-                    </div>
+                    <PasswordCheck password={user.password as string}/>
                 }
                 <div className="row-input">
                     <Input name={language.password_confirm} parameter="passwordConfirm" type={INPUTTYPE.TEXT} value={user} setValue={setUser} requared
