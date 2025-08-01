@@ -1,4 +1,4 @@
-import { Burger, User } from "components";
+import { Burger, Logo, Slogan, User } from "components";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -16,7 +16,10 @@ const Header = () => {
             <div className="container">
                 <div className="section-tile">
                     <div className="header-wrap">
-                        Logo
+                        <div className="logo">
+                            <Logo/>
+                            <Slogan/>
+                        </div>
                         <div className={`header-right-side${show ? " nav-active" : ""}`} onClick={() => {if(show) setShow(false)}}>
                             <nav className="navigation">
                                 <NavLink to="/" className={({ isActive }) => `${isActive ? "a-active" : ""}`}>{language.home}</NavLink>
