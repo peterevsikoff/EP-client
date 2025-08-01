@@ -2,7 +2,6 @@ import { signUp } from "action-creators";
 import { Input, PasswordCheck } from "components";
 import { useState, useTransition } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { selectCommonData } from "selectors";
 import { INPUTTYPE, type IError, type IUserToServer, type MainTypeForChange } from "types";
 import { validEmail } from "utils";
@@ -18,7 +17,6 @@ const SignUp = () => {
     const [, startTransition] = useTransition();
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const callBackSuccess = () => startTransition(() => setLoading(false));
     const callBackError = (error: IError) => setError(error);
@@ -33,6 +31,20 @@ const SignUp = () => {
         dispatch(signUp(user as IUserToServer, callBackSuccess, callBackError, callBackServerError));
     }
 
+    const handleGeneratePassword = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const length = 16;
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+        const randomValues = new Uint32Array(length);
+        crypto.getRandomValues(randomValues);
+        
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += chars[randomValues[i] % chars.length];
+        }
+        setUser(prev => ({...prev, password: result}));
+    }
+
     return(
         <section className="sign">
             {/* <HelmetHead title={language.sign_up} description="" noRobots/> */}
@@ -44,6 +56,9 @@ const SignUp = () => {
                 <div className="row-input">
                     <Input name={language.password} parameter="password" type={INPUTTYPE.TEXT} value={user} setValue={setUser} requared
                     invalid={!!user?.passwordConfirm && !(user?.password === user?.passwordConfirm)}/>
+                    <button className="btn-generate-password" onClick={e => handleGeneratePassword(e)}>
+                        {language.generate_password}
+                    </button>
                 </div>
                 {
                     user?.password &&
@@ -58,10 +73,6 @@ const SignUp = () => {
                         error &&
                         <div className="error-container">
                             {error.errorText}
-                            {
-                                error.exist &&
-                                <a onClick={() => navigate("/signIn")}>{language.sign_in}</a>
-                            }
                         </div>
                     }
                     <button className="btn-primary" disabled={!(user && (!Object.keys(user).length || validEmail(user.email as string) && user.password && user.passwordConfirm && (user.password === user.passwordConfirm))) || loading} onClick={e => handleSignUp(e)}>

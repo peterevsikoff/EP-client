@@ -38,4 +38,26 @@
             @include a;
         }
     }
+
+    .row-input {
+        position: relative;
+    }
+}
+
+.btn-generate-password {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translate(0, -50%);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-style: italic;
+    color: $gray;
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .7;
+    }
 }
