@@ -144,16 +144,7 @@
     align-items: center;
     justify-content: space-between;
 
-    svg:first-child {
-        height: 40px;
-        width: 40px;
-
-        g {
-            transform: scale(1.3);
-        }
-    }
-
-    svg:last-child {
+    svg {
         height: 40px;
         width: 140px;
     }
