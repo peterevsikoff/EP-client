@@ -1,0 +1,39 @@
+.post {
+    width: 320px;
+    min-width: 280px;
+    height: 135px;
+    color: $white;
+    background-color: $dark-gray;
+    border-radius: 16px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 12px;
+
+    h5 {
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+
+    .post-date {
+        font-style: italic;
+        font-size: 12px;
+        opacity: .7;
+        margin-bottom: 6px;
+        text-align: right;
+    }
+
+    .post-description {
+        flex-grow: 1;
+
+        p {
+            font-size: 12px;
+            display: -webkit-box;
+            line-clamp: 4;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

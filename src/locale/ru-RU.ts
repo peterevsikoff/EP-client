@@ -18,6 +18,7 @@ const languageRu: { [key: string]: string } = {
     good: "хороший",
     great: "отличный",
     generate_password: "сгенерировать",
+    posts: "Новости",
 }
 
 export { languageRu };

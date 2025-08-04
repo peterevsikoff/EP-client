@@ -1,7 +1,9 @@
+import { Posts } from "components";
+
 const Home = () => {
     return(
         <>
-            Home
+            <Posts/>
         </>
     )
 }

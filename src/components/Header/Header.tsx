@@ -17,7 +17,6 @@ const Header = () => {
                 <div className="section-tile">
                     <div className="header-wrap">
                         <div className="logo">
-                            {/* <Logo/> */}
                             <Slogan/>
                         </div>
                         <div className={`header-right-side${show ? " nav-active" : ""}`} onClick={() => {if(show) setShow(false)}}>

@@ -8,9 +8,16 @@ const writeCookie = (param: string, value: string) => {
     document.cookie = `${encodeURIComponent(param)}=${encodeURIComponent(value)}; expires=${date}; path=/`;
 }
 
+const getLocalDateTime = (text: string | undefined) => {
+    if(text)
+        return(new Date(text).toLocaleString([], {year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" }).replace(", ", "\n"));
+    else
+        return("");
+}
 
 
 export {
+    getLocalDateTime,
     validEmail,
     writeCookie,
 }
