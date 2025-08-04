@@ -10,9 +10,26 @@
     flex-direction: column;
     margin-right: 12px;
 
-    h5 {
-        font-size: 18px;
-        margin-bottom: 6px;
+    .post-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h5 {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .btn-close-post {
+            @include button;
+            @include button-transparent;
+            display: inline-block;
+            opacity: .7;
+
+            svg g {
+                fill: $gray;
+            }
+        }
     }
 
     .post-date {
@@ -35,5 +52,23 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+    }
+}
+
+.post-show {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    padding: 50px;
+
+    .post-title {
+        margin-bottom: 24px;
+    }
+
+    .post-date {
+        margin-bottom: 24px;
     }
 }

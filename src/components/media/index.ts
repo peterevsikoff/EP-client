@@ -1,4 +1,5 @@
 export * from "./Burger";
+export * from "./Close";
 export * from "./Hide";
 export * from "./Logo";
 export * from "./Slogan";
