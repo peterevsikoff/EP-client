@@ -1,4 +1,4 @@
-import { Burger, Logo, Slogan, User } from "components";
+import { Burger, Slogan, User } from "components";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -17,7 +17,7 @@ const Header = () => {
                 <div className="section-tile">
                     <div className="header-wrap">
                         <div className="logo">
-                            <Logo/>
+                            {/* <Logo/> */}
                             <Slogan/>
                         </div>
                         <div className={`header-right-side${show ? " nav-active" : ""}`} onClick={() => {if(show) setShow(false)}}>
