@@ -5,3 +5,4 @@ export * from "./media";
 export * from "./Posts";
 export * from "./Sign";
 export * from "./User";
+export * from "./Users";

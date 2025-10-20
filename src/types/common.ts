@@ -14,9 +14,14 @@ interface IUserState {
     user: IUser | null,
 }
 
+interface IAdminState {
+    users: IUser[] | null,
+}
+
 interface IStoreState {
     user: IUserState,
     common: ICommonState,
+    admin: IAdminState,
 }
 
 interface IPage {

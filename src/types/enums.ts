@@ -5,6 +5,7 @@ enum PAGES {
     TESTS = "tests",
     ABOUT = "about",
     ADMIN = "admin",
+    USERS = "users",
 }
 
 enum INPUTTYPE {
