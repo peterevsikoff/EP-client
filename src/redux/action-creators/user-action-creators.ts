@@ -54,7 +54,7 @@ function* fetchSignUp(action: any) {
         });
         callbackSuccess();
     
-        if(response.status === 201){
+        if(response.status === 201 || response.status === 200){
             const data: IUserAuthorized = yield response.json();
             yield put(setUser(data));
         }
@@ -67,7 +67,6 @@ function* fetchSignUp(action: any) {
             callbackServerError();
         else throw error;
     }
-    
 }
 
 function* watcherUser(){
