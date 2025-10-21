@@ -1,8 +1,10 @@
 interface IUser {
-    id: string;
-    email: string;
-    created_at: string;
-    role?: 'user' | 'admin';
+    id: string,
+    email: string,
+    created_at: string,
+    role?: 'user' | 'admin',
+    isVerified: boolean,
+    verificationToken?: string,
 }
 
 interface IUserToServer {

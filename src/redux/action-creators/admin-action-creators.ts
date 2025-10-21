@@ -15,16 +15,12 @@ const loadUsers = () => ({
 function* fetchLoadUsers(/*action: ReturnType<typeof loadUsers>*/) {
     // const { setToastError } = action;
 
-    // yield put(setUser("Иванов"));
-
     const response: Response = yield fetch(addressRequest.getAllUsers, {
         // headers: {Authorization: `Bearer ${getCookie("accessToken")}`}
     });
-    console.log(response);
+    
     if(response.status === 200){
-        // const data: string = yield response.text();
         const data: IUser[] = yield response.json();
-        console.log(data);
         yield put(setUsers(data));
     }
     // else 

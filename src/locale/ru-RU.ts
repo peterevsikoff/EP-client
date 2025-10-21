@@ -21,6 +21,8 @@ const languageRu: { [key: string]: string } = {
     posts: "Новости",
     created_at: "Добавлен",
     users: "Пользователи",
+    verified: "Подтвержден",
+    role: "Роль",
 }
 
 export { languageRu };

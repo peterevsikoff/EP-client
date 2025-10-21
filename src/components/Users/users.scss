@@ -1,0 +1,35 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.user-container {
+    padding: 6px;
+    overflow: auto;
+}
+
+.user-table {
+    color: $white;
+    font-size: 13px;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    
+    td, th {
+        padding: 2px 4px;
+    }
+    
+    th {
+        border-top: 1px solid $white;
+        border-bottom: 1px solid $white;
+        border-right: 1px solid $white;
+    }
+
+    td {
+        border-bottom: 1px solid $white;
+        border-right: 1px solid $white;
+    }
+
+    th:first-child, td:first-child {
+        border-left: 1px solid $white;
+    }
+
+}
