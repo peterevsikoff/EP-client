@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAdminData, selectCommonData } from "selectors";
 import "./users.scss";
+import { Check, Close } from "components";
+import { getLocalDateTime } from "utils";
 
 const Users = () => {
     const { language } = useSelector(selectCommonData);
@@ -38,8 +40,12 @@ const Users = () => {
                                         <tr key={x.id}>
                                             <td>{i + 1}</td>
                                             <td>{x.email}</td>
-                                            <td>{new Date(x.created_at).toLocaleString([], {year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" })}</td>
-                                            <td>{x.isVerified ? "True" : "False"}</td>
+                                            <td>{getLocalDateTime(x.created_at)}</td>
+                                            <td className="td-center td-icon">
+                                                <div className="svg-container">
+                                                    {x.isVerified ? <Check fill={"#00FF00"}/> : <Close fill={"#FF0000"}/>}
+                                                </div>
+                                            </td>
                                             <td>{x.role}</td>
                                         </tr>
                                     )

@@ -4,3 +4,4 @@ export * from "./Hide";
 export * from "./Logo";
 export * from "./Slogan";
 export * from "./View";
+export * from "./Check";

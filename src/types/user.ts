@@ -1,8 +1,10 @@
+import type { ROLES } from "./enums"
+
 interface IUser {
     id: string,
     email: string,
     created_at: string,
-    role?: 'user' | 'admin',
+    role?: ROLES,
     isVerified: boolean,
     verificationToken?: string,
 }

@@ -22,7 +22,7 @@ const SignUp = () => {
     const callBackError = (error: IError) => setError(error);
     const callBackServerError = () => {
         startTransition(() => setLoading(false));
-        setError({errorText: language.server_error});
+        setError({message: language.server_error});
     }
 
     const handleSignUp = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLFormElement>) => {
@@ -72,7 +72,7 @@ const SignUp = () => {
                     {
                         error &&
                         <div className="error-container">
-                            {error.errorText}
+                            {error.message}
                         </div>
                     }
                     <button className="btn-primary" disabled={!(user && (!Object.keys(user).length || validEmail(user.email as string) && user.password && user.passwordConfirm && (user.password === user.passwordConfirm))) || loading} onClick={e => handleSignUp(e)}>

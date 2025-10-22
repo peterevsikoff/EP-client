@@ -35,7 +35,7 @@ interface MainTypeForChange {
 }
 
 interface IError {
-    errorText: string,
+    message: string,
     notAuthorized?: boolean,
     exist?: boolean,
 }

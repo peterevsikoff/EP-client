@@ -4,6 +4,7 @@
 .user-container {
     padding: 6px;
     overflow: auto;
+    color: $white;
 }
 
 .user-table {
@@ -32,4 +33,21 @@
         border-left: 1px solid $white;
     }
 
+    .td-center {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .td-icon {
+
+        .svg-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        svg {
+            transform: scale(.8);
+        }
+    }
 }

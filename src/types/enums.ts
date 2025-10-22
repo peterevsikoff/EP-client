@@ -14,7 +14,14 @@ enum INPUTTYPE {
     TEXT = "text",
 }
 
+enum ROLES {
+    USER = "user",
+    PRO = "pro",
+    ADMIN = "admin",
+}
+
 export {
     INPUTTYPE,
     PAGES,
+    ROLES,
 }
