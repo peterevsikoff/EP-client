@@ -40,8 +40,7 @@ const signUp = (user: IUserToServer, callbackSuccess: ICallbackSuccess, callback
     callbackServerError
 })
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function* fetchSignUp(action: any) {
+function* fetchSignUp(action: ReturnType<typeof signUp>) {
     const { user, callbackSuccess, callbackError, callbackServerError } = action;
 
     try {
@@ -56,6 +55,7 @@ function* fetchSignUp(action: any) {
     
         if(response.status === 201 || response.status === 200){
             const data: IUserAuthorized = yield response.json();
+            console.log(data);
             yield put(setUser(data));
         }
         else {
