@@ -6,6 +6,7 @@ import { selectCommonData } from "selectors";
 import { INPUTTYPE, type IError, type IUserToServer, type MainTypeForChange } from "types";
 import { validEmail } from "utils";
 import "../sign.scss";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
     const { language } = useSelector(selectCommonData);
@@ -17,6 +18,7 @@ const SignUp = () => {
     const [, startTransition] = useTransition();
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const callBackSuccess = () => startTransition(() => setLoading(false));
     const callBackError = (error: IError) => setError(error);
@@ -28,7 +30,7 @@ const SignUp = () => {
     const handleSignUp = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLFormElement>) => {
         startTransition(() => setLoading(true));
         e.preventDefault();
-        dispatch(signUp(user as IUserToServer, callBackSuccess, callBackError, callBackServerError));
+        dispatch(signUp(user as IUserToServer, callBackSuccess, callBackError, callBackServerError, navigate));
     }
 
     const handleGeneratePassword = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLFormElement>) => {

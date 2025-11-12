@@ -1,8 +1,9 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { takeEvery } from "redux-saga/effects";
 import { LOAD_USER, SET_USER, SIGN_UP } from "action-types"
 import { addressRequest } from "utils";
 import type { IUser, IUserAuthorized, IUserToServer } from "types/user";
-import type { ICallbackError, ICallbackServerError, ICallbackSuccess, IError } from "types";
+import { PAGES, type ICallbackError, type ICallbackServerError, type ICallbackSuccess, type IError } from "types";
+import type { NavigateFunction } from "react-router-dom";
 
 const setUser = (user: IUserAuthorized) => ({
     type: SET_USER,
@@ -32,16 +33,17 @@ function* fetchLoadUser(/*action: ReturnType<typeof loadUser>*/) {
     //     errorShow(response, setToastError);
 }
 
-const signUp = (user: IUserToServer, callbackSuccess: ICallbackSuccess, callbackError: ICallbackError, callbackServerError: ICallbackServerError) => ({
+const signUp = (user: IUserToServer, callbackSuccess: ICallbackSuccess, callbackError: ICallbackError, callbackServerError: ICallbackServerError, navigate: NavigateFunction) => ({
     type: SIGN_UP,
     user,
     callbackSuccess,
     callbackError,
-    callbackServerError
+    callbackServerError,
+    navigate
 })
 
 function* fetchSignUp(action: ReturnType<typeof signUp>) {
-    const { user, callbackSuccess, callbackError, callbackServerError } = action;
+    const { user, callbackSuccess, callbackError, callbackServerError, navigate } = action;
 
     try {
         const response: Response = yield fetch(addressRequest.signUp, {
@@ -54,9 +56,10 @@ function* fetchSignUp(action: ReturnType<typeof signUp>) {
         callbackSuccess();
     
         if(response.status === 201 || response.status === 200){
-            const data: IUserAuthorized = yield response.json();
-            console.log(data);
-            yield put(setUser(data));
+            // const data: IUserAuthorized = yield response.json();
+            // console.log(data);
+            // yield put(setUser(data));
+            navigate(`/${PAGES.SIGN_UP_SUCCESS}`)
         }
         else {
             const error: IError = yield response.json();

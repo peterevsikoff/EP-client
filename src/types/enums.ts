@@ -6,6 +6,8 @@ enum PAGES {
     ABOUT = "about",
     ADMIN = "admin",
     USERS = "users",
+    VERIFY_EMAIL = "verifyEmail",
+    SIGN_UP_SUCCESS = "signUpSuccess",
 }
 
 enum INPUTTYPE {

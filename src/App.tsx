@@ -1,4 +1,4 @@
-import { Header, Home, SignUp, Users } from "components";
+import { Header, Home, SignUp, Users, VerifyEmail } from "components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PAGES } from "types";
 
@@ -14,6 +14,8 @@ const App = () => {
                 <Route index element={<Home/>}></Route>
                 <Route path={PAGES.SIGN_UP}>
                     <Route index element={<SignUp/>}></Route>
+                    <Route path={PAGES.VERIFY_EMAIL} element={<VerifyEmail/>}></Route>
+                    <Route path={PAGES.SIGN_UP_SUCCESS} element={<SignUp/>}></Route>
                 </Route>
                 <Route path={PAGES.USERS}>
                     <Route index element={<Users/>}></Route>
