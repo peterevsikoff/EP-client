@@ -59,7 +59,7 @@ function* fetchSignUp(action: ReturnType<typeof signUp>) {
             // const data: IUserAuthorized = yield response.json();
             // console.log(data);
             // yield put(setUser(data));
-            navigate(`/${PAGES.SIGN_UP_SUCCESS}`)
+            navigate(`/${PAGES.SIGN_UP}/${PAGES.SIGN_UP_SUCCESS}`)
         }
         else {
             const error: IError = yield response.json();
