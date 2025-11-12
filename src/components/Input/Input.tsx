@@ -4,7 +4,7 @@ import { INPUTTYPE, type MainTypeForChange } from "types";
 import "./input.scss";
 import { validEmail } from "utils";
 
-const Input = ({name, value, setValue, oldValue, requared = false, invalid, type, parameter, min, disabled, autoFocus}: {
+const Input = ({name, value, setValue, oldValue, requared = false, invalid, type, parameter, min, disabled, autoFocus, autoComplete}: {
     name: string,
     oldValue?: string | number,
     requared?: boolean,
@@ -15,7 +15,8 @@ const Input = ({name, value, setValue, oldValue, requared = false, invalid, type
     value?: MainTypeForChange,
     setValue: Dispatch<SetStateAction<MainTypeForChange | undefined>>,
     disabled?: boolean,
-    autoFocus?: boolean
+    autoFocus?: boolean,
+    autoComplete?: string
 }) => {
 
     const [, startTransition] = useTransition();
@@ -34,7 +35,7 @@ const Input = ({name, value, setValue, oldValue, requared = false, invalid, type
 
     return(
         <div className="form-floating">
-            <input type={type === INPUTTYPE.PASSWORD ? viewPassword ? INPUTTYPE.PASSWORD : INPUTTYPE.TEXT : type} disabled={disabled} autoFocus={autoFocus} className={`form-control${valid(value?.[parameter])}`} 
+            <input type={type === INPUTTYPE.PASSWORD ? viewPassword ? INPUTTYPE.PASSWORD : INPUTTYPE.TEXT : type} name={parameter} autoComplete={autoComplete} disabled={disabled} autoFocus={autoFocus} className={`form-control${valid(value?.[parameter])}`} 
                 placeholder={name as string} value={(value?.[parameter] as string) ?? ""} min={min} onChange={(e) => setValue({...value, [parameter]: (e.target.value.trim() ? e.target.value : "")})} />
             <label>{name}</label>
             {

@@ -28,8 +28,8 @@ const SignUp = () => {
     }
 
     const handleSignUp = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLFormElement>) => {
-        startTransition(() => setLoading(true));
         e.preventDefault();
+        startTransition(() => setLoading(true));
         dispatch(signUp(user as IUserToServer, callBackSuccess, callBackError, callBackServerError, navigate));
     }
 
@@ -53,11 +53,11 @@ const SignUp = () => {
             <form onKeyDown={e => { if (e.key === "Enter") handleSignUp(e)}}>
                 <h2>{language.sign_up}</h2>
                 <div className="row-input">
-                    <Input name={language.email} parameter="email" type={INPUTTYPE.EMAIL} value={user} setValue={setUser} requared autoFocus/>
+                    <Input name={language.email} parameter="email" type={INPUTTYPE.EMAIL} value={user} setValue={setUser} requared autoFocus autoComplete="email"/>
                 </div>
                 <div className="row-input">
                     <Input name={language.password} parameter="password" type={INPUTTYPE.TEXT} value={user} setValue={setUser} requared
-                    invalid={!!user?.passwordConfirm && !(user?.password === user?.passwordConfirm)}/>
+                    invalid={!!user?.passwordConfirm && !(user?.password === user?.passwordConfirm)} autoComplete="current-password"/>
                     <button className="btn-generate-password" onClick={e => handleGeneratePassword(e)}>
                         {language.generate_password}
                     </button>
@@ -77,7 +77,7 @@ const SignUp = () => {
                             {error.message}
                         </div>
                     }
-                    <button className="btn-primary" disabled={!(user && (!Object.keys(user).length || validEmail(user.email as string) && user.password && user.passwordConfirm && (user.password === user.passwordConfirm))) || loading} onClick={e => handleSignUp(e)}>
+                    <button type="submit" className="btn-primary" disabled={!(user && (!Object.keys(user).length || validEmail(user.email as string) && user.password && user.passwordConfirm && (user.password === user.passwordConfirm))) || loading} onClick={e => handleSignUp(e)}>
                         {language.sign_in}
                         {
                             loading &&
