@@ -85,12 +85,12 @@ function* fetchEmailVerified(action: ReturnType<typeof emailVerified>) {
     const { token, callbackSuccess, callbackError, callbackServerError, navigate } = action;
 
     try {
-        const response: Response = yield fetch(addressRequest.signUp, {
+        const response: Response = yield fetch(addressRequest.verifyEmail, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(token)
+            body: JSON.stringify({token})
         });
         callbackSuccess();
     

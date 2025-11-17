@@ -19,6 +19,7 @@ const VerifyEmail = () => {
         
     }
 
+    console.log(token);
     useEffect(() => {
         if(token)
             dispatch(emailVerified(token, callBackSuccess, callBackError, callBackServerError, navigate));
