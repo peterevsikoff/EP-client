@@ -98,7 +98,7 @@ function* fetchEmailVerified(action: ReturnType<typeof emailVerified>) {
             const data: IUserAuthorized = yield response.json();
             console.log(data);
             yield put(setUser(data));
-            navigate(`/${PAGES.HOME}`)
+            navigate(`/`)
         }
         else {
             const error: IError = yield response.json();

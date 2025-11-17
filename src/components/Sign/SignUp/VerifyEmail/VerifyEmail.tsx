@@ -19,19 +19,16 @@ const VerifyEmail = () => {
         
     }
 
-    console.log(token);
     useEffect(() => {
         if(token)
             dispatch(emailVerified(token, callBackSuccess, callBackError, callBackServerError, navigate));
     }, [dispatch, navigate, token]);
 
     return(
-        <div>
-        {token ? (
-            <p>Токен: {token}</p>
-        ) : (
-            <p>Токен не найден</p>
-        )}
+        <div className="message">
+        {
+            token && <p>Проходим верификацию</p>
+        }
         </div>
     )
 }
