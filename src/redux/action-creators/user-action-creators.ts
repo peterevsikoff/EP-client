@@ -72,7 +72,7 @@ function* fetchSignUp(action: ReturnType<typeof signUp>) {
     }
 }
 
-const emailVerified = (token: string, callbackSuccess: ICallbackSuccess, callbackError: ICallbackError, callbackServerError: ICallbackServerError, navigate: NavigateFunction) => ({
+const emailVerified = (token: string, callbackSuccess: (m: string) => void, callbackError: ICallbackError, callbackServerError: ICallbackServerError, navigate: NavigateFunction) => ({
     type: EMAIL_VERIFIED,
     token,
     callbackSuccess,
@@ -92,16 +92,18 @@ function* fetchEmailVerified(action: ReturnType<typeof emailVerified>) {
             },
             body: JSON.stringify({token})
         });
-        callbackSuccess();
-    
+        
+        callbackSuccess(JSON.stringify(response.status));
         if(response.status === 201 || response.status === 200){
             const data: IUserAuthorized = yield response.json();
+            callbackSuccess(JSON.stringify(data));
             console.log(data);
             yield put(setUser(data));
             navigate(`/`)
         }
         else {
             const error: IError = yield response.json();
+            callbackSuccess(JSON.stringify(error));
             callbackError(error);
         }
     } catch(error: unknown) {

@@ -1,5 +1,5 @@
 import { emailVerified } from "action-creators";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import type { IError } from "types";
@@ -13,7 +13,8 @@ const VerifyEmail = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const callBackSuccess = () => {};
+    const [m, setM] = useState("");
+    const callBackSuccess = (m: string) => {setM(m)};
     const callBackError = (error: IError) => console.log(error);
     const callBackServerError = () => {
         
@@ -28,6 +29,9 @@ const VerifyEmail = () => {
         <div className="message">
         {
             token && <p>Проходим верификацию</p>
+        }
+        {
+            m && <p>{m}</p>
         }
         </div>
     )
