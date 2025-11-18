@@ -36,7 +36,7 @@ const SignIn = () => {
         <section className="sign">
             {/* <HelmetHead title={language.sign_up} description="" noRobots/> */}
             <form onKeyDown={e => { if (e.key === "Enter") handleSignIn(e)}}>
-                <h2>{language.sign_in}</h2>
+                <h2>{language.enter}</h2>
                 <div className="row-input">
                     <Input name={language.email} parameter="email" type={INPUTTYPE.EMAIL} value={user} setValue={setUser} requared autoFocus autoComplete="email"/>
                 </div>
@@ -51,7 +51,7 @@ const SignIn = () => {
                             {error.message}
                         </div>
                     }
-                    <button type="submit" className="btn-primary" disabled={!(user && (!Object.keys(user).length || validEmail(user.email as string) && user.password && user.passwordConfirm && (user.password === user.passwordConfirm))) || loading} onClick={e => handleSignIn(e)}>
+                    <button type="submit" className="btn-primary" disabled={!(user && (!Object.keys(user).length || validEmail(user.email as string) && user.password )) || loading} onClick={e => handleSignIn(e)}>
                         {language.sign_in}
                         {
                             loading &&

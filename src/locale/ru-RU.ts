@@ -27,6 +27,7 @@ const languageRu: { [key: string]: string } = {
     success: "Успешно",
     warning: "Предупреждение",
     email_verified_success: "Email успешно подтвержден",
+    enter: "Вход",
 }
 
 export { languageRu };
