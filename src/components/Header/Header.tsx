@@ -28,12 +28,6 @@ const Header = () => {
                             <Slogan/>
                         </div>
                         <div className={`header-right-side${show ? " nav-active" : ""}`} onClick={() => {if(show) setShow(false)}}>
-                            {/* <nav className="navigation">
-                                <NavLink to="/" className={({ isActive }) => `${isActive ? "a-active" : ""}`}>{language.home}</NavLink>
-                                <NavLink to={`/${PAGES.TESTS}`} className={({ isActive }) => `${isActive ? "a-active" : ""}`}>{language.tests}</NavLink>
-                                <NavLink to={`/${PAGES.ABOUT}`} className={({ isActive }) => `${isActive ? "a-active" : ""}`}>{language.about}</NavLink>
-                                <NavLink to={`/${PAGES.USERS}`} className={({ isActive }) => `${isActive ? "a-active" : ""}`}>{language.users}</NavLink>
-                            </nav> */}
                             <nav className="navigation">
                                 {
                                     navConfig.map(({id, ...x}) => (x.roles.includes(user?.role) && 
