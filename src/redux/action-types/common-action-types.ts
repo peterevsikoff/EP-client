@@ -1,5 +1,5 @@
-const SIGN_IN = "SIGN_IN";
+// const SIGN_IN = "SIGN_IN";
 
-export {
-    SIGN_IN,
-}
+// export {
+//     SIGN_IN,
+// }
