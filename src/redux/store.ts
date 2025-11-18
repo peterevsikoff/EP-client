@@ -24,6 +24,8 @@ const store = createStore(combineReducers({
 middleWare.run(rootSaga);
 
 store.subscribe(() => {
+    const user = store.getState().user;
+    localStorage.setItem("EasyPsyUser", JSON.stringify(user));
 })
 
 export { store };
