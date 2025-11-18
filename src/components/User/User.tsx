@@ -20,7 +20,7 @@ const User = () => {
                 </>
                 :
                 <>
-                    <NavLink to={`/${PAGES.SIGN_UP}`} className={({ isActive }) => `${isActive ? "a-active" : "a-user"}`}>{`${language.hello}, ${JSON.stringify(user)}`}</NavLink>
+                    <NavLink to={`/${PAGES.SIGN_UP}`} className={({ isActive }) => `${isActive ? "a-active" : "a-user"}`}>{`${language.hello}, ${user.email}`}</NavLink>
                     <NavLink to={`/${PAGES.SIGN_UP}`} className={({ isActive }) => `${isActive ? "a-active" : ""}`} onClick={() => localStorage.removeItem("EasyPsyUser")}>{language.log_out}</NavLink>
                 </>
             }
