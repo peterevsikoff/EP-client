@@ -1,5 +1,5 @@
 import { put, select, takeEvery } from "redux-saga/effects";
-import { EMAIL_VERIFIED, LOAD_USER, SET_USER, SIGN_UP } from "action-types"
+import { EMAIL_VERIFIED, LOAD_USER, SET_USER, SIGN_IN, SIGN_UP } from "action-types"
 import { addressRequest } from "utils";
 import type { IUser, IUserAuthorized, IUserToServer } from "types/user";
 import { PAGES, POPUPMESSAGE, type ICallbackError, type ICallbackServerError, type ICallbackSuccess, type IError, type IStoreState } from "types";
@@ -109,10 +109,50 @@ function* fetchEmailVerified(action: ReturnType<typeof emailVerified>) {
     }
 }
 
+const signIn = (user: IUserToServer, callbackSuccess: ICallbackSuccess, callbackError: ICallbackError, callbackServerError: ICallbackServerError, navigate: NavigateFunction) => ({
+    type: SIGN_IN,
+    user,
+    callbackSuccess,
+    callbackError,
+    callbackServerError,
+    navigate
+})
+
+function* fetchSignIn(action: ReturnType<typeof signIn>) {
+    const { user, callbackSuccess, callbackError, callbackServerError, navigate } = action;
+
+    try {
+        const response: Response = yield fetch(addressRequest.signIn, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+        });
+        callbackSuccess();
+    
+        if(response.status === 201 || response.status === 200){
+            const data: IUserAuthorized = yield response.json();
+            // console.log(data);
+            yield put(setUser(data));
+            navigate(`/`)
+        }
+        else {
+            const error: IError = yield response.json();
+            callbackError(error);
+        }
+    } catch(error: unknown) {
+        if(error instanceof Error && error.message === "Failed to fetch")
+            callbackServerError();
+        else throw error;
+    }
+}
+
 function* watcherUser(){
     yield takeEvery(LOAD_USER, fetchLoadUser);
     yield takeEvery(SIGN_UP, fetchSignUp);
     yield takeEvery(EMAIL_VERIFIED, fetchEmailVerified);
+    yield takeEvery(SIGN_IN, fetchSignIn);
 }
 
 export {
@@ -120,5 +160,6 @@ export {
     loadUser,
     signUp,
     emailVerified,
+    signIn,
     watcherUser
 }

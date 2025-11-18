@@ -10,6 +10,7 @@ const addressRequest = {
     getAllUsers: `${host}users/getAllUsers`,
 
     signUp: `${host}users/signUp`,
+    signIn: `${host}users/signIn`,
     verifyEmail: `${host}users/verifyEmail`,
 }
 
