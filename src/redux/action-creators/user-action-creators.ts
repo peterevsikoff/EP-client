@@ -1,9 +1,10 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { put, select, takeEvery } from "redux-saga/effects";
 import { EMAIL_VERIFIED, LOAD_USER, SET_USER, SIGN_UP } from "action-types"
 import { addressRequest } from "utils";
 import type { IUser, IUserAuthorized, IUserToServer } from "types/user";
-import { PAGES, type ICallbackError, type ICallbackServerError, type ICallbackSuccess, type IError } from "types";
+import { PAGES, POPUPMESSAGE, type ICallbackError, type ICallbackServerError, type ICallbackSuccess, type IError, type IStoreState } from "types";
 import type { NavigateFunction } from "react-router-dom";
+import { addPopUpMessages } from "action-creators";
 
 const setUser = (user: IUserAuthorized) => ({
     type: SET_USER,
@@ -72,17 +73,15 @@ function* fetchSignUp(action: ReturnType<typeof signUp>) {
     }
 }
 
-const emailVerified = (token: string, callbackSuccess: (m: string) => void, callbackError: ICallbackError, callbackServerError: ICallbackServerError, navigate: NavigateFunction) => ({
+const emailVerified = (token: string, navigate: NavigateFunction) => ({
     type: EMAIL_VERIFIED,
     token,
-    callbackSuccess,
-    callbackError,
-    callbackServerError,
     navigate
 })
 
 function* fetchEmailVerified(action: ReturnType<typeof emailVerified>) {
-    const { token, callbackSuccess, callbackError, callbackServerError, navigate } = action;
+    const { token, navigate } = action;
+    const { language } = yield select((state: IStoreState) => state.common);
 
     try {
         const response: Response = yield fetch(addressRequest.verifyEmail, {
@@ -93,22 +92,19 @@ function* fetchEmailVerified(action: ReturnType<typeof emailVerified>) {
             body: JSON.stringify({token})
         });
         
-        callbackSuccess(JSON.stringify(response.status));
         if(response.status === 201 || response.status === 200){
             const data: IUserAuthorized = yield response.json();
-            callbackSuccess(JSON.stringify(data));
-            console.log(data);
             yield put(setUser(data));
-            navigate(`/`)
+            navigate(`/`);
+            yield put(addPopUpMessages({id: crypto.randomUUID(), text: language.email_verified_success, type: POPUPMESSAGE.SUCCESS}));
         }
         else {
             const error: IError = yield response.json();
-            callbackSuccess(JSON.stringify(error));
-            callbackError(error);
+            yield put(addPopUpMessages({id: crypto.randomUUID(), text: JSON.stringify(error), type: POPUPMESSAGE.ERROR}));
         }
     } catch(error: unknown) {
         if(error instanceof Error && error.message === "Failed to fetch")
-            callbackServerError();
+            yield put(addPopUpMessages({id: crypto.randomUUID(), text: "Failed to fetch", type: POPUPMESSAGE.ERROR}));
         else throw error;
     }
 }

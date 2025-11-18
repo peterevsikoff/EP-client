@@ -1,0 +1,121 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.pop-up-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    font-size: 16px;
+
+    @media (max-width: 460px) {
+        width: 100vw;
+        padding: 12px 2px 0 12px;
+        font-size: 18px;
+    }
+
+    .pop-up-message {
+        border-radius: 6px;
+        color: $white-bright;
+        padding: 6px;
+        margin-bottom: 6px;
+        margin-right: 2px;
+        opacity: 0;
+        animation: fadeShow .3s linear forwards;
+
+        &:last-child {
+            margin-bottom: 3px;
+        }
+
+        .pop-up-title {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 6px 4px;
+            border-radius: 6px 6px 0 0;
+            font-weight: 600;
+            font-style: italic;
+            // font-size: 16px;
+            border-bottom: 1px solid $gray;
+            line-height: 1;
+
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                @include button-transparent;
+                @include button;
+
+                &:hover svg g path{
+                    fill: $gray;
+                }
+
+                svg {
+                    transform: scale(.8);
+                    g path{
+                        fill: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    .pop-up-error {
+        @include box-shadow($red);
+
+        .pop-up-title {
+            color: $red;
+        }
+    }
+
+    .pop-up-success {
+        @include box-shadow($green);
+
+        .pop-up-title {
+            color: $green;
+        }
+    }
+
+    .pop-up-warning {
+        @include box-shadow($orange);
+
+        .pop-up-title {
+            color: $orange;
+        }
+    }
+
+    .pop-up-run {
+        animation: fadeOut 5s linear forwards;
+    }
+
+    @keyframes fadeShow {
+        0% {
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+
+        99% {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+}

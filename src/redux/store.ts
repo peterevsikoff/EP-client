@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { all } from "redux-saga/effects";
-import { adminReducer, commonReducer, userReducer } from "./reducers";
+import { adminReducer, commonReducer, popUpReducer, userReducer } from "./reducers";
 import { watcherAdmin, watcherCommon, watcherUser } from "./action-creators";
 
 const middleWare = createSagaMiddleware();
@@ -18,6 +18,7 @@ const store = createStore(combineReducers({
     user: userReducer,
     common: commonReducer,
     admin: adminReducer,
+    popUp: popUpReducer,
 }), {}, applyMiddleware(middleWare));
 
 middleWare.run(rootSaga);

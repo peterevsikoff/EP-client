@@ -22,8 +22,15 @@ enum ROLES {
     ADMIN = "admin",
 }
 
+enum POPUPMESSAGE {
+    SUCCESS = "success",
+    ERROR = "error",
+    WARNING = "warning",
+}
+
 export {
     INPUTTYPE,
     PAGES,
     ROLES,
+    POPUPMESSAGE,
 }

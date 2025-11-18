@@ -1,4 +1,4 @@
-import { Header, Home, SignUp, SignUpSuccess, Users, VerifyEmail } from "components";
+import { Header, Home, PopUp, SignUp, SignUpSuccess, Users, VerifyEmail } from "components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PAGES } from "types";
 
@@ -7,7 +7,6 @@ const App = () => {
 
   return (
     <BrowserRouter>
-        {/* <User/> */}
         <Header/>
         <Routes>
             <Route path="/">
@@ -24,6 +23,7 @@ const App = () => {
             </Route>
         </Routes>
         {/* <Footer/> */}
+        <PopUp/>
     </BrowserRouter>
   )
 }

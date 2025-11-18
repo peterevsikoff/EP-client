@@ -6,3 +6,4 @@ export * from "./Posts";
 export * from "./Sign";
 export * from "./User";
 export * from "./Users";
+export * from "./PopUp";

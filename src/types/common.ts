@@ -1,4 +1,4 @@
-import type { IUser } from "types";
+import type { IUser, POPUPMESSAGE } from "types";
 
 interface ILanguage {
     [key: string]: string
@@ -18,10 +18,15 @@ interface IAdminState {
     users: IUser[] | null,
 }
 
+interface IPopUpState {
+    messages: IPopUpMessage[]
+}
+
 interface IStoreState {
     user: IUserState,
     common: ICommonState,
     admin: IAdminState,
+    popUp: IPopUpState,
 }
 
 interface IPage {
@@ -52,6 +57,12 @@ interface ICallbackServerError {
     (): void
 }
 
+interface IPopUpMessage {
+    id: string,
+    text: string,
+    type: POPUPMESSAGE,
+}
+
 export type {
     ILanguage,
     IStoreState,
@@ -63,4 +74,5 @@ export type {
     IError,
     IPage,
     MainTypeForChange,
+    IPopUpMessage,
 }

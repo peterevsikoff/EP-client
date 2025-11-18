@@ -23,6 +23,10 @@ const languageRu: { [key: string]: string } = {
     users: "Пользователи",
     verified: "Подтвержден",
     role: "Роль",
+    error: "Ошибка",
+    success: "Успешно",
+    warning: "Предупреждение",
+    email_verified_success: "Email успешно подтвержден",
 }
 
 export { languageRu };
